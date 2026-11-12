@@ -125,6 +125,7 @@ header{grid-column:1/3;display:flex;align-items:center;gap:14px;min-height:44px;
 .btn{border:1px solid #333944;background:#1a1d23;border-radius:12px;padding:11px 16px;cursor:pointer;font-size:15px;min-height:44px;transition:background .2s,border-color .2s,transform .1s}
 .btn:hover{background:#22262e;border-color:#454c58}
 .btn:active{transform:scale(.98)}
+button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .btn.primary{background:#fff;color:#0a0b0d;border-color:#fff;font-weight:700}
 .btn.primary:hover{background:#e6eaef}
 .choices{display:flex;flex-direction:column;gap:8px;margin-top:10px}
@@ -200,7 +201,7 @@ ul.clean{padding-left:18px;margin:6px 0}ul.clean li{margin:4px 0;line-height:1.5
   .toast{font-size:13px}
 }
 #rot{display:none;grid-column:1/-1;font-size:13px;color:var(--muted);text-align:center;padding:2px 0}
-@media (max-width:600px) and (orientation:portrait){#rot{display:block}}
+@media (max-width:600px) and (orientation:portrait){#rot{display:block}#dialog{bottom:2%;width:96%}.dbox{padding:10px 12px;gap:10px}.dline{font-size:13px;line-height:1.4;min-height:0}.portrait{width:34px;height:34px;font-size:14px}.dname small{display:none}}
 @media (max-width:920px) and (orientation:landscape) and (max-height:560px){
   body{overflow:hidden}
   #app{grid-template-columns:minmax(0,1fr) 200px;grid-template-rows:auto minmax(0,1fr) auto;height:100dvh;min-height:0;padding:6px;gap:6px}
@@ -229,7 +230,7 @@ ul.clean{padding-left:18px;margin:6px 0}ul.clean li{margin:4px 0;line-height:1.5
   </header>
   <section id="stageWrap">
     <div id="stage">
-      <canvas id="cv" aria-label="Oyun sahnesi"></canvas>
+      <canvas id="cv" role="img" aria-label="Oyun sahnesi: parlayan nesne şu anki adımdır. Talimatlar alttaki Ne yap kartında."></canvas>
       <div id="stageUI"></div>
       <div class="bar" id="lbTop"></div><div class="bar" id="lbBot"></div>
       <div id="dialog" role="dialog" aria-live="polite"></div>
@@ -238,8 +239,8 @@ ul.clean{padding-left:18px;margin:6px 0}ul.clean li{margin:4px 0;line-height:1.5
   </section>
   <section id="hint">
     <div id="rot">📱 Daha rahat oynamak için telefonu yatay çevirebilirsin.</div>
-    <div class="hcard" id="hWhat"><h4>Ne yap?</h4><p id="hWhatT">Başlamak için “Yolculuğa başla”ya dokun.</p></div>
-    <div class="hcard" id="hWhy"><h4 id="hWhyH">Neden?</h4><p id="hWhyT">Bir aşının fikirden rafa uzanan yolunu adım adım göreceksin.</p></div>
+    <div class="hcard" id="hWhat" aria-live="polite"><h4>Ne yap?</h4><p id="hWhatT">Başlamak için “Yolculuğa başla”ya dokun.</p></div>
+    <div class="hcard" id="hWhy" aria-live="polite"><h4 id="hWhyH">Neden?</h4><p id="hWhyT">Bir aşının fikirden rafa uzanan yolunu adım adım göreceksin.</p></div>
   </section>
   <aside id="side">
     <div>
@@ -379,8 +380,8 @@ const UI = {
   cardCount() { $('#cardCount').textContent = State.cards.size + '/9'; }
 };
 const Modal = {
-  open(html, wide) { const c = $('#mcard'); c.className = 'card' + (wide ? ' wide' : ''); c.innerHTML = html; $('#modal').classList.add('show'); c.scrollTop = 0; return c; },
-  close() { $('#modal').classList.remove('show'); $('#mcard').innerHTML = ''; },
+  open(html, wide) { const c = $('#mcard'); if (!this.isOpen) this._prev = document.activeElement; c.className = 'card' + (wide ? ' wide' : ''); c.innerHTML = html; $('#modal').classList.add('show'); c.scrollTop = 0; setTimeout(() => { const f = c.querySelector('button:not([disabled])'); if (f && c.contains(f)) f.focus({ preventScroll: true }); }, 30); return c; },
+  close() { $('#modal').classList.remove('show'); $('#mcard').innerHTML = ''; if (this._prev && this._prev.focus && document.contains(this._prev)) this._prev.focus({ preventScroll: true }); },
   get isOpen() { return $('#modal').classList.contains('show'); }
 };
 

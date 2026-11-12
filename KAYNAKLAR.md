@@ -49,4 +49,5 @@ Not: CDC’nin canlı mit sayfası taşındığı için arşiv kopyası kullanı
 - [x] 9 Mit Avı kartı: Mit → Neden inanılıyor → Kanıt → Doğru açıklama → Kaynak etiketi; koleksiyon ekranı
 - [x] 8. durak: Halk Güveni göstergesi; alay/baskı/abartı güveni düşürür; kanıt kartı sunma
 - [x] Final: halk güveni, kapsam, “Gerçek hayatta güvenilir kaynak nerede?” ekranı ve hekime yönlendirme
-- [ ] Gerçek cihazlarda (iOS Safari, Android Chrome) elle oynanış ve ekran okuyucu denetimi önerilir
+- [x] Erişilebilirlik: modal açılınca odak ilk düğmeye, kapanınca geri döner; görünür klavye odağı; talimat kartları `aria-live`; diyalog Enter/Boşluk/Esc ile
+- [ ] Gerçek cihazlarda (iOS Safari, Android Chrome) elle oynanış ve ekran okuyucu (VoiceOver/TalkBack) denetimi — yalnızca fiziksel cihazla yapılabilir
