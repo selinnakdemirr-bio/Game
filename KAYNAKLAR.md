@@ -17,6 +17,14 @@
 | 8 | Halkla buluşma | Riskleri gizlediler | Miyokardit sinyali aşı sonrası izlemeyle yakalandı, açıklandı, ürün bilgisine eklendi; nadir, çoğunlukla genç erkeklerde, 2. dozdan sonraki günlerde. ABD 2021: 12–29 yaş erkeklerde 2. dozdan sonra ~40,6 bildirim/milyon doz. 12–17 yaş erkeklerde enfeksiyon sonrası kalp komplikasyonu riski 2. doz sonrasının 1,8–5,6 katı | [CDC MMWR 2021;70(27)](https://www.cdc.gov/mmwr/volumes/70/wr/mm7027e2.htm) · [CDC MMWR 2022;71(14)](https://www.cdc.gov/mmwr/volumes/71/wr/mm7114e1.htm) |
 | 9 | İzleme | Bildirilen her olay aşıdan kaynaklanır | Pasif bildirim erken uyarı aracıdır; tek başına rapor nedensellik göstermez; neden belirsiz olsa bile bildirim istenir | [VAERS SSS](https://vaers.hhs.gov/faq.html) · [CDC WONDER – VAERS](https://wonder.cdc.gov/vaers.html) |
 
+### “Nasıl çalışır?” açıklayıcı kartlarının ek kaynakları
+
+| Kart | Bilgi | Kaynak |
+|---|---|---|
+| Şişede ne var / ne yok | COVID-19 aşılarında koruyucu (tiyomersal vb.), antibiyotik, doku, gıda proteini, lateks, metal ve mikroelektronik bulunmaz | [CDC arşiv PDF](https://stacks.cdc.gov/view/cdc/116179/cdc_116179_DS1.pdf) · [CDC Mitler (arşiv)](https://archive.cdc.gov/www_cdc_gov/covid/vaccines/myths-facts.html) |
+| Aşılı kişi bulaştırır mı? | “Saçılma” yalnızca zayıflatılmış canlı virüs aşılarında olur; COVID-19 mRNA/viral vektör aşıları canlı virüs içermez | [CDC Mitler (arşiv)](https://archive.cdc.gov/www_cdc_gov/covid/vaccines/myths-facts.html) |
+| Yan etki yalnızca aşılarda mı? | İlaç talimatı sıklık ölçeği: çok yaygın ≥1/10, yaygın ≥1/100–<1/10, yaygın olmayan ≥1/1.000–<1/100, seyrek ≥1/10.000–<1/1.000, çok seyrek <1/10.000 | [EMA ürün bilgisi şablonu](https://ema.europa.eu/en/documents/other/appendix-3-guideline-clinical-evaluation-anticancer-medicinal-products-summary-product-characteristics-anticancer-medicinal-product-mock-48_en.pdf) · [CDC MMWR 2021;70(27)](https://www.cdc.gov/mmwr/volumes/70/wr/mm7027e2.htm) |
+
 Not: CDC’nin canlı mit sayfası taşındığı için arşiv kopyası kullanıldı. Kaynaklar 2021–2024 tarihlidir; önerilerle ilgili güncel bilgi için ulusal sağlık otoritesine bakılmalıdır.
 
 ## 2) Bilimsel basitleştirmeler
@@ -32,6 +40,9 @@ Not: CDC’nin canlı mit sayfası taşındığı için arşiv kopyası kullanı
 - **Kalite kontrol** dört parametreye (sterilite, mRNA bütünlüğü, LNP partikül boyutu, saflık) ve geçti/kaldı sonucuna indirgendi.
 - **Soğuk zincir** sıcaklığı birimsiz bir ölçekle ve “etiketteki üst sınır” olarak gösterildi; ürünlere özgü derece aralıkları yazılmadı.
 - **İzleme**: Gözlenen/beklenen grafiği ve aktif takip animasyonu kurgusaldır; gerçek sinyal analizleri istatistiksel yöntemler içerir.
+- **mRNA üretim akışı** altı adıma indirgendi (DNA şablonu → enzimle kopyalama → saflaştırma → lipitle paketleme → steril dolum → kalite kontrol).
+- **Benzetmeler** (tarif kartı, zarf, dondurma, duman dedektörü vb.) anlamayı kolaylaştırmak içindir; her ayrıntıyı birebir karşılamaz.
+- **Laboratuvar hızlandırıldı**: ısınma ve santrifüj süreleri kısaltıldı, piston uç tüpten çıkınca kendiliğinden bırakılır; mekanizma ayrı kartlarda anlatılır.
 - **Final kapsam yüzdesi** güven, stabilite, kontaminasyon ve hata sayısından türetilen bir oyun skorudur.
 
 ## 3) Test kontrol listesi
@@ -46,6 +57,7 @@ Not: CDC’nin canlı mit sayfası taşındığı için arşiv kopyası kullanı
 - [x] Pipet: piston 1./2. kademe dikey sürükleme ve kademe direnci; hızlı bırakma = kabarcık; derinlik/açı kesit paneli; hızlı taşıma = damla/aerosol; kullanılmış uçla yeni reaktif = çapraz kontaminasyon
 - [x] Hız çubuğu yok; geri bildirim nesne üzerinde (dalga, damla, köpük, renk, sarsılma)
 - [x] Her an tek adım parlar (spot ışığı), diğerleri soluklaşır; “Ne yap?/Neden?” kartı ve hata açıklaması
+- [x] 10 “Nasıl çalışır?” kartı (mRNA, deney amacı, pipet, ters teknik, titre, içerik ve üretim, soğuk zincir, yan etki sıklığı, bulaşma, nedensellik), her biri “kendini sına” sorusuyla
 - [x] 9 Mit Avı kartı: Mit → Neden inanılıyor → Kanıt → Doğru açıklama → Kaynak etiketi; koleksiyon ekranı
 - [x] 8. durak: Halk Güveni göstergesi; alay/baskı/abartı güveni düşürür; kanıt kartı sunma
 - [x] Final: halk güveni, kapsam, “Gerçek hayatta güvenilir kaynak nerede?” ekranı ve hekime yönlendirme

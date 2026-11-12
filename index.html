@@ -81,7 +81,7 @@ header{grid-column:1/3;display:flex;align-items:center;gap:14px;min-height:44px;
 .hcard{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:10px 14px;min-height:64px;transition:border-color .3s,background .3s}
 .hcard h4{margin:0 0 3px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:700}
 .hcard p{margin:0;font-size:14px;line-height:1.45}
-#hWhat{border-color:#2f4b47}
+#hWhat{border-color:color-mix(in srgb,var(--accent) 50%,#272b33)}
 #hWhat h4{color:var(--accent)}
 #hint.err #hWhy{border-color:var(--warn);background:#1c1710}
 #hint.err #hWhy h4{color:var(--warn)}
@@ -101,7 +101,7 @@ header{grid-column:1/3;display:flex;align-items:center;gap:14px;min-height:44px;
 .mrow span:first-child{color:#c9cfd8}
 .mval{font-variant-numeric:tabular-nums;font-weight:700;font-size:14px;transition:color .3s}
 .mbar{height:5px;background:#22262e;border-radius:9px;margin-top:6px;overflow:hidden}
-.mbar b{display:block;height:100%;width:0;background:#e9edf2;border-radius:9px;transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.mbar b{display:block;height:100%;width:0;background:var(--mc,#e9edf2);border-radius:9px;transition:width .6s cubic-bezier(.2,.8,.2,1)}
 .metric.up .mval{color:var(--good)}.metric.down .mval{color:var(--bad)}
 .metric.up .mbar b{background:var(--good)}.metric.down .mbar b{background:var(--bad)}
 .simnote{font-size:10.5px;color:var(--muted);margin-top:6px}
@@ -215,6 +215,32 @@ ul.clean{padding-left:18px;margin:6px 0}ul.clean li{margin:4px 0;line-height:1.5
   .metrics{display:block}.metric{padding:4px 0}.mrow{font-size:11px}
   #dialog{bottom:2%}.dline{font-size:13px;min-height:0}.portrait{width:38px;height:38px;font-size:15px}
 }
+.xhead{margin:-22px -22px 14px;padding:20px 22px 16px;border-radius:20px 20px 0 0;background:linear-gradient(135deg,color-mix(in srgb,var(--c) 42%,transparent),transparent 85%);border-bottom:1px solid #2c313a}
+.xhead .eyebrow{color:var(--c)}
+.xv{border-radius:16px;padding:16px;background:color-mix(in srgb,var(--c) 13%,#14171c);border:1px solid color-mix(in srgb,var(--c) 45%,transparent);margin-bottom:4px;animation:tin .35s}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.fn{display:flex;align-items:center;gap:8px;background:#1c2027;border:1px solid #353b46;border-radius:999px;padding:6px 12px 6px 6px;font-size:13.5px;opacity:.5;transition:opacity .3s,transform .3s,box-shadow .3s}
+.fn b{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:var(--c);color:#0b0d10;font-size:12px;flex:none}
+.fn.hi{opacity:1;border-color:var(--c);box-shadow:0 0 0 3px color-mix(in srgb,var(--c) 30%,transparent);transform:scale(1.05)}
+.fn.past,.flow.all .fn{opacity:1}
+.fa{font-style:normal;color:var(--muted)}
+.chips{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px}
+.chip{border:1px solid color-mix(in srgb,var(--c) 60%,transparent);background:color-mix(in srgb,var(--c) 18%,#171a20);border-radius:12px;padding:12px;cursor:pointer;text-align:left;font-size:14px;min-height:44px;transition:background .2s}
+.chip:hover,.chip.sel{background:color-mix(in srgb,var(--c) 40%,#171a20)}
+.chip.no b{text-decoration:line-through;text-decoration-color:var(--bad);text-decoration-thickness:2px}
+.chipd{margin-top:10px;font-size:14.5px;min-height:22px;color:#eef1f5;line-height:1.5}
+.dots2{display:grid;grid-template-columns:repeat(20,1fr);gap:4px;max-width:340px}
+.dots2.sm{grid-template-columns:repeat(40,1fr);gap:2px;max-width:420px}
+.dots2 i{aspect-ratio:1;border-radius:50%;background:#3a414c}
+.dots2 i.on{background:var(--c);box-shadow:0 0 8px var(--c)}
+.dcap{font-size:13px;color:#cfd5de;margin-top:8px}
+.ladder{display:flex;flex-direction:column;gap:9px}
+.ladder div{display:flex;align-items:center;gap:10px;font-size:13.5px}
+.ladder b{display:block;height:12px;width:var(--w);min-width:6px;background:var(--c);border-radius:6px;flex:none}
+.ana{margin-top:10px;padding:12px 14px;border-radius:12px;background:color-mix(in srgb,var(--c) 12%,#15181d);border-left:4px solid var(--c);font-size:14.5px;line-height:1.55}
+.ana b{display:block;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--c);margin-bottom:3px}
+.card h3.xh{color:#fff;text-transform:none;letter-spacing:0;font-size:18px;margin:12px 0 4px}
+.xnote{font-size:12.5px;color:var(--muted)}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -302,12 +328,13 @@ const METRICS = [
   { k: 'contamination', label: 'Kontaminasyon Riski', fmt: v => Math.round(v) + '%', bar: v => v / 100, goodUp: false },
   { k: 'stability', label: 'Antijen Stabilitesi', fmt: v => Math.round(v) + '%', bar: v => v / 100, goodUp: true }
 ];
+METRICS.forEach((M, i) => { M.col = ['#c79bff', '#5fd3a6', '#ff8b98', '#7fb8ff'][i]; });
 const Metrics = {
   shown: {}, els: {}, flashT: {},
   build() {
     const box = $('#metrics'); box.innerHTML = '';
     METRICS.forEach(M => {
-      const d = document.createElement('div'); d.className = 'metric';
+      const d = document.createElement('div'); d.className = 'metric'; d.style.setProperty('--mc', M.col);
       d.innerHTML = `<div class="mrow"><span>${M.label}</span><span class="mval">—</span></div><div class="mbar"><b></b></div>`;
       box.appendChild(d); this.els[M.k] = d; this.shown[M.k] = State.m[M.k];
     });
@@ -354,6 +381,7 @@ const Metrics = {
 };
 
 /* ===================== UI ===================== */
+const CH_COLORS = ['#ff8a78', '#ffb454', '#c79bff', '#7fb8ff', '#ffd166', '#5fd3a6', '#6ad1ff', '#ff8fc6', '#b2e05a'];
 const CH_NAMES = ['Sinyal', 'Laboratuvar', 'Preklinik', 'Klinik Fazlar', 'Düzenleyici İnceleme', 'Üretim', 'Soğuk Zincir', 'Halkla Buluşma', 'İzleme'];
 const UI = {
   _why: '', _whyT: 0, _once: {},
@@ -515,7 +543,7 @@ function drawPerson(g, x, y, o = {}) {
   const s = o.s || 1, bob = o.bob ? Math.sin(Game.t * 2 + (o.ph || 0)) * 1.5 : 0;
   softShadow(g, x, y, 20 * s, 7 * s, .3);
   g.save(); g.translate(x, y + bob * 0); g.scale(s, s);
-  const body = o.coat || '#ffffff', shirt = o.shirt || '#5b8def';
+  const body = o.coat || o.shirt || '#5b8def', shirt = o.shirt || '#5b8def';
   g.fillStyle = shade(o.pants || '#3b4252', 0); rr(g, -10, -26, 8, 26, 3); g.fill(); rr(g, 2, -26, 8, 26, 3); g.fill();
   g.fillStyle = body; rr(g, -15, -62 + bob, 30, 40, 10); g.fill();
   g.fillStyle = shade(body, -.12); rr(g, -15, -62 + bob, 8, 40, 6); g.fill();
@@ -563,14 +591,14 @@ function drawTube(g, o) {
 const Scenes = {
   par: { x: 0, y: 0 },
   room(g, c) {
-    const px = this.par.x, py = this.par.y;
-    const bg = g.createLinearGradient(0, 0, 0, H); bg.addColorStop(0, c.bg1 || '#e8edf3'); bg.addColorStop(1, c.bg2 || '#d5dde7');
+    const px = this.par.x, py = this.par.y, tint = CH_COLORS[clamp(Game.idx, 0, 8)], T = (h, k) => mix(h, tint, k);
+    const bg = g.createLinearGradient(0, 0, 0, H); bg.addColorStop(0, T(c.bg1 || '#e8edf3', .25)); bg.addColorStop(1, T(c.bg2 || '#d5dde7', .32));
     g.fillStyle = bg; g.fillRect(0, 0, W, H);
     const n = c.n || 10, wh = c.wallH || 7;
     Iso.set((c.ox || 480) - px * 10, (c.oy || 150) - py * 6, c.tw || 56);
     const P = (a, b, z) => Iso.p(a, b, z);
-    poly(g, [P(0, 0, 0), P(0, n, 0), P(0, n, wh), P(0, 0, wh)], c.wallL || '#c9d3df');
-    poly(g, [P(0, 0, 0), P(n, 0, 0), P(n, 0, wh), P(0, 0, wh)], c.wallR || '#dbe2ea');
+    poly(g, [P(0, 0, 0), P(0, n, 0), P(0, n, wh), P(0, 0, wh)], T(c.wallL || '#c9d3df', .42));
+    poly(g, [P(0, 0, 0), P(n, 0, 0), P(n, 0, wh), P(0, 0, wh)], T(c.wallR || '#dbe2ea', .3));
     // pencere (parallax gökyüzü)
     if (c.window !== false) {
       const a = P(3, 0, 2.2), b = P(7, 0, 2.2), cc = P(7, 0, 5.6), d = P(3, 0, 5.6);
@@ -587,7 +615,7 @@ const Scenes = {
     }
     if (c.wallDeco) c.wallDeco(g, P);
     // zemin
-    for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) poly(g, [P(i, j), P(i + 1, j), P(i + 1, j + 1), P(i, j + 1)], (i + j) % 2 ? (c.f1 || '#eef1f5') : (c.f2 || '#e3e8ee'));
+    for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) poly(g, [P(i, j), P(i + 1, j), P(i + 1, j + 1), P(i, j + 1)], (i + j) % 2 ? T(c.f1 || '#eef1f5', .1) : T(c.f2 || '#e3e8ee', .2));
     // süpürgelik
     g.strokeStyle = 'rgba(0,0,0,.08)'; g.lineWidth = 2; g.beginPath(); g.moveTo(...P(0, n)); g.lineTo(...P(0, 0)); g.lineTo(...P(n, 0)); g.stroke();
     // nesneler derinliğe göre (x+y) sıralı
@@ -782,6 +810,129 @@ const MYTHS = {
   }
 };
 
+
+/* ===================== AÇIKLAYICI KARTLAR (Nasıl çalışır?) ===================== */
+const MYTH_EXTRA = {
+  dna: { q: 'Kuzenin soruyor: “mRNA DNA’ma karışır mı?” Hangi gerçek bu soruyu doğrudan yanıtlar?', ana: 'mRNA, ana kitaptan alınmış bir fotokopi tarif gibidir: Aşçı (hücre) okur, yemeği (spike proteinini) yapar, kâğıdı atar. Kütüphanedeki ana kitaba (DNA) dokunulmaz.' },
+  fetal: { q: 'Bir arkadaşın “Aşıda fetal doku var” diye bir paylaşım gördü. Hangi bilgi doğru?', ana: 'Ekmeği fırında pişirirsin ama fırın ekmeğin içinde değildir. Hücre hattı da bazı aşılar için bir “fırın” gibidir; şişeye konmaz.' },
+  sick: { q: 'Aşıdan sonraki gün halsiz hisseden biri “Aşı bana COVID bulaştırdı” diyor. Ne söylersin?', ana: 'Yangın tatbikatında alarm çalar, herkes koşar ama gerçek yangın yoktur. Ateş ve yorgunluk da bağışıklık sisteminin tatbikatıdır.' },
+  fast: { q: '“Aşılar normalde 10 yıl sürer, bu nasıl 1 yılda bitti?” sorusuna en doğru yanıt hangisi?', ana: 'Bir binayı hızlı bitirmek için kat atlamazsın: Elektrikçi, boyacı ve tesisatçı sıra beklemek yerine aynı anda çalışır. Kat sayısı aynı, bekleme yok.' },
+  fertility: { q: 'Bir çift “Aşı olursak çocuğumuz olmaz mı?” diye endişeli. Hangi bilgi kanıta dayanır?', ana: 'İki anahtarın biraz benzemesi aynı kapıyı açtıkları anlamına gelmez. Spike proteini ile plasentadaki protein arasındaki benzerlik de bu kadar zayıftır.' },
+  chip: { q: '“Aşıyla vücuda çip yerleştiriyorlar” diyen birine hangi somut bilgiyi verirsin?', ana: 'Bir telefon bile çalışmak için pil, anten ve şarj ister. İğneden geçen birkaç damla sıvıda bunların hiçbiri yoktur.' },
+  recovered: { q: '“Ben zaten hastalığı geçirdim” diyen birine hangi ifade doğru olur?', ana: 'Bir dili bir yaz öğrenip sonra hiç kullanmazsan bir kısmını unutursun; kimi az unutur, kimi çok. Bağışıklık hafızası da kişiden kişiye değişir.' },
+  hidden: { q: '“Kalp yan etkisini sakladılar” diyen bir paylaşıma hangi bilgi yanıt verir?', ana: 'Duman dedektörü tam da bunun için vardır: Küçük bir dumanı fark eder ve alarm verir. İzleme sistemi de nadir yan etkiyi fark etti ve herkese duyurdu.' },
+  reports: { q: 'Bildirim sisteminde binlerce rapor görüp “Demek ki aşı yapmış” diyen birine ne söylersin?', ana: 'Bir şehirde herkes sabah çay içse, öğleden sonra kaza yapanların hepsi “çaydan sonra” kaza yapmış olur. Sebep çay değildir: “Sonra” ile “yüzünden” aynı şey değil.' }
+};
+for (const k in MYTH_EXTRA) Object.assign(MYTHS[k], MYTH_EXTRA[k]);
+
+const SRC_CDC = { l: 'CDC — Mitler ve Gerçekler (arşiv)', u: 'https://archive.cdc.gov/www_cdc_gov/covid/vaccines/myths-facts.html' };
+const EXPLAIN = {
+  mrna: { title: 'mRNA aşısı vücutta ne yapar?', c: '#ff8a78', src: [SRC_CDC],
+    slides: [
+      { h: '1 · Tarif hücreye girer', t: 'Aşı kol kasına yapılır. Yağdan yapılmış minik baloncuklar (lipit nanopartiküller) mRNA tarifini kas hücrelerinin içine taşır.', a: 'Mektubu zarfa koymak gibi: Zarf (lipit) olmasa mektup (mRNA) yolda yırtılır.', vis: { type: 'flow', hi: 0, steps: [{ l: 'Enjeksiyon' }, { l: 'Hücreye giriş' }, { l: 'Spike üretimi' }, { l: 'Bağışıklık hafızası' }] } },
+      { h: '2 · Hücre tarifi okur, sonra atar', t: 'Hücrenin protein yapan makineleri (ribozomlar) tarifi okuyup spike proteinini üretir. Tarif hücre çekirdeğine girmez ve kısa sürede parçalanır.', a: 'Tarifi okuyup yemeği yapan aşçı, kâğıdı sonra atar; mutfağın planı değişmez.', vis: { type: 'flow', hi: 2, steps: [{ l: 'Enjeksiyon' }, { l: 'Hücreye giriş' }, { l: 'Spike üretimi' }, { l: 'Bağışıklık hafızası' }] } },
+      { h: '3 · Bağışıklık sistemi tanımayı öğrenir', t: 'Spike proteinini gören bağışıklık sistemi antikor ve hafıza hücreleri üretir. Gerçek virüs gelirse onu çok daha hızlı tanır.', a: 'Aranan kişinin fotoğrafını önceden görmüş bir güvenlik görevlisi gibi: Yüzü görünce hemen tanır.', vis: { type: 'flow', hi: 3, steps: [{ l: 'Enjeksiyon' }, { l: 'Hücreye giriş' }, { l: 'Spike üretimi' }, { l: 'Bağışıklık hafızası' }] } }
+    ],
+    check: { q: 'mRNA hücrede ne kadar kalır?', ok: 'Doğru. Kısa ömürlü olması, kalıcı bir değişiklik bırakmamasının nedenidir.', opts: [{ t: 'Kısa bir süre; görevini yapınca hücre onu parçalar.', ok: true }, { t: 'Ömür boyu DNA’ya eklenir.', fb: 'mRNA çekirdeğe girmez, DNA’ya eklenmez.' }, { t: 'Yıllarca vücutta birikir.', fb: 'mRNA kırılgan bir moleküldür; hücre onu kısa sürede parçalar.' }] } },
+  lab: { title: 'Bu deneyde ne yapıyoruz?', c: '#ffb454',
+    slides: [
+      { h: 'Büyük resim', t: 'Tarifi (mRNA) yazdık. Şimdi soruyoruz: Lipit kılıfa sarılmış bu tarifi hücreye verirsek, hücre gerçekten spike proteinini üretir mi? Bu küçük bir laboratuvar testidir; halka uygulanacak dozlar burada değil, 6. durakta fabrikada üretilir.', vis: { type: 'flow', steps: [{ l: 'mRNA tarifi', c: '#ff8a78' }, { l: 'Lipit kılıf', c: '#ffd166' }, { l: 'Hücre kültürü', c: '#ff8fc6' }, { l: 'Spike üretiyor mu?', c: '#5fd3a6' }] } },
+      { h: 'Neden bu kadar titizlik?', t: 'Sonuca güvenebilmek için her damla doğru hacimde ve temiz olmalı. Yanlış hacim yanlış oran demektir; kirli bir uç da yanıltıcı sonuç verir.', a: 'Kek tarifinde unu yanlış ölçersen, kek kötü çıktığında suçun tarifte mi ölçüde mi olduğunu bilemezsin.', vis: { type: 'flow', steps: [{ l: 'Doğru hacim' }, { l: 'Temiz uç' }, { l: 'Sağlam hücre' }, { l: 'Güvenilir sonuç' }] } }
+    ],
+    check: { q: 'Bu laboratuvar deneyinin amacı ne?', ok: 'Evet. Önce küçük ölçekte “çalışıyor mu?” diye bakarız, sonra hayvan ve insan denemelerine geçeriz.', opts: [{ t: 'Formülasyonun hücreye spike proteini ürettirip ürettirmediğini test etmek.', ok: true }, { t: 'Halka uygulanacak dozları üretmek.', fb: 'Toplu üretim 6. durakta, fabrikada yapılır. Burada küçük bir test yapıyoruz.' }, { t: 'Virüsü çoğaltmak.', fb: 'mRNA aşısı için virüs çoğaltılmaz; yalnızca virüsün genetik dizisi kullanılır.' }] } },
+  pipette: { title: 'Pipet nasıl çalışır?', c: '#7fb8ff',
+    slides: [
+      { h: 'Pipet bir hava pompasıdır', t: 'Pistona basınca içerideki hava dışarı itilir. Uç sıvıdayken pistonu bırakınca, boşalan yeri doldurmak için sıvı uca çekilir. Sıvı pipetin gövdesine girmez; yalnızca tek kullanımlık uca girer.', a: 'Meyve suyu pipetinin ucunu parmağınla kapatıp kaldırırsan içinde sıvı kalır. Sıvıyı tutan şey hava basıncıdır.', vis: { type: 'flow', steps: [{ l: 'Bas: hava çıkar' }, { l: 'Daldır' }, { l: 'Bırak: sıvı çekilir' }, { l: 'Taşı' }, { l: 'Bas: sıvı çıkar' }] } },
+      { h: 'İki kademe ne demek?', t: 'Pistonu indirirken iki durak hissedersin. Birine dokunarak görevini oku.', vis: { type: 'chips', hint: 'Bir kademeye dokun.', items: [{ l: '1. kademe', c: '#7fb8ff', d: 'Ayarlanan hacim kadar havayı iter. Ölçülen miktar budur.' }, { l: '2. kademe', c: '#c79bff', d: '1. kademeden biraz daha fazla hava iter. Uçta kalan son damlayı üflemek için kullanılır.' }] } },
+      { h: 'Neden yavaş ve dik?', t: 'Pistonu hızlı bırakırsan sıvı uca fırlar, köpük ve hava kabarcığı girer; hacim şaşar. Pipeti 20°’den fazla eğersen sıvı sütunu değişir. Dolu ucu hızlı sallarsan damla kopar ya da havaya damlacık (aerosol) savrulur.', vis: { type: 'flow', steps: [{ l: 'Yavaş bırak' }, { l: 'Dik tut (≤20°)' }, { l: 'Yavaş taşı' }, { l: 'Her reaktifte yeni uç' }] } }
+    ],
+    check: { q: 'Uç sıvının içindeyken pistonu bırakınca ne olur?', ok: 'Doğru. Pipet bir vakum gibi çalışır; bu yüzden bırakma hızı ve derinlik çok önemlidir.', opts: [{ t: 'Boşalan hava yerine sıvı uca çekilir.', ok: true }, { t: 'Sıvı pipetin gövdesine dolar.', fb: 'Sıvı yalnızca tek kullanımlık uca girer. Gövdeye girmesi kontaminasyon demektir.' }, { t: 'Hiçbir şey olmaz; hacmi düğme ayarlar.', fb: 'Düğme hacmi ayarlar ama sıvıyı çeken şey pistonun bıraktığı boşluktur.' }] } },
+  reverse: { title: 'Neden ikinci bir teknik?', c: '#ffd166',
+    slides: [
+      { h: 'Yapışkan sıvı uca yapışır', t: 'Bal gibi koyu (viskoz) ya da sabunlu su gibi köpüren sıvılar ucun iç duvarına yapışır. İleri teknikle üflersen köpürür ve doz şaşar.', a: 'Bal kaşığını ters çevirsen de balın bir kısmı kaşıkta kalır.' },
+      { h: 'Ters teknik: fazlasını al, ölçüyü ver', t: 'Önce 2. kademeye basıp fazladan çekersin. Boşaltırken yalnızca 1. kademeye basarsın: Ölçülen doz çıkar, fazlası uçta kalır ve uçla birlikte atılır.', vis: { type: 'flow', steps: [{ l: '2. kademeye bas' }, { l: 'Daldır, yavaş bırak' }, { l: 'Yalnız 1. kademe ile ver' }, { l: 'Kalanı uçla at' }] } }
+    ],
+    check: { q: 'Ters teknikte boşaltırken neden 2. kademeye basmıyoruz?', ok: 'Evet. Fazlalık bir “güvenlik payı”dır; doz 1. kademeyle verilir.', opts: [{ t: 'Uçtaki fazlalık dozun parçası değil; üflersek köpük ve fazla doz olur.', ok: true }, { t: 'Piston bozulmasın diye.', fb: 'Piston bozulmaz; sorun dozun ve köpüğün kontrolüdür.' }, { t: 'Daha hızlı bitsin diye.', fb: 'Hız değil doğruluk: Fazlalık uçta kalmalı ki doz şaşmasın.' }] } },
+  titer: { title: 'Antikor titresi ne demek?', c: '#c79bff',
+    slides: [
+      { h: 'Antikor: virüse yapışan bir kilit', t: 'Antikorlar spike proteinine yapışan Y şeklindeki proteinlerdir. Nötralize edici antikorlar virüsün hücreye tutunmasını engeller.', a: 'Anahtar deliğine sıkışmış bir sakız gibi: Anahtar (virüs) artık kilide (hücre) giremez.' },
+      { h: 'Seyrelterek ölçeriz', t: 'Kan serumunu her adımda yarı yarıya sulandırırız: 1:100, 1:200, 1:400… Renk eşiğin altına düşene kadar. “1:6400” demek, 6400 kat sulandırıldıktan sonra bile antikor saptanabiliyor demek.', a: 'Vişne suyunu sürekli suyla incelttiğini düşün. Renk ne kadar geç kayboluyorsa, başlangıçta o kadar koyuydu.', vis: { type: 'flow', hi: 3, steps: [{ l: '1:100' }, { l: '1:400' }, { l: '1:1600' }, { l: '1:6400 ✓' }, { l: '1:12800 ✗', c: '#8f98a6' }] } }
+    ],
+    check: { q: 'Hangisi daha güçlü bir antikor yanıtıdır?', ok: 'Doğru. Sayı seyreltmeyi gösterir: Ne kadar büyükse antikor o kadar boldur.', opts: [{ t: '1:6400, çünkü çok sulandırılınca bile sinyal var.', ok: true }, { t: '1:400, çünkü sayı küçük.', fb: 'Sayı seyreltme oranıdır. Daha çok sulandırıldığı hâlde görünen sinyal daha güçlü yanıttır.' }] } },
+  make: { title: 'Şişede ne var, nasıl üretilir?', c: '#5fd3a6', eb: 'İçerik ve üretim',
+    src: [{ l: 'CDC — COVID-19 aşılarında olmayan içerikler (arşiv PDF)', u: 'https://stacks.cdc.gov/view/cdc/116179/cdc_116179_DS1.pdf' }, SRC_CDC],
+    slides: [
+      { h: 'Şişede ne var?', t: 'Dört ana grup var. Her birine dokunarak görevini oku.', note: 'Tam liste ürüne göre küçük farklar gösterir; ürünün kullanma talimatında yazar.', vis: { type: 'chips', items: [{ l: 'mRNA', c: '#ff8a78', d: 'Spike proteininin tarifi. Asıl etkin madde budur.' }, { l: 'Lipitler', c: '#ffd166', d: 'Yağdan minik baloncuklar. mRNA’yı korur ve hücrenin içine taşır.' }, { l: 'Tuzlar ve tampon', c: '#7fb8ff', d: 'Sıvının asitliğini vücuda yakın tutar. Serum fizyolojikte de tuz vardır.' }, { l: 'Şeker (sükroz)', c: '#ff8fc6', d: 'Dondurma ve çözme sırasında baloncukların bozulmasını önler.' }] } },
+      { h: 'Şişede ne YOK?', t: 'Kalite kontrol her partide içeriği ve saflığı ölçer. Bunlar COVID-19 aşılarında bulunmaz:', vis: { type: 'chips', hint: 'Bir öğeye dokun.', items: [{ l: 'Canlı virüs', no: 1, d: 'mRNA aşısı yalnızca bir proteinin tarifini taşır; virüs yoktur.' }, { l: 'DNA', no: 1, d: 'Üretimde kullanılan şablon DNA enzimle parçalanıp ayrılır.' }, { l: 'Mikroçip, metal', no: 1, d: 'Demir, nikel gibi metaller ya da elektronik parçalar yoktur.' }, { l: 'Koruyucu (cıvalı vb.)', no: 1, d: 'Tiyomersal gibi koruyucular içermez.' }, { l: 'Antibiyotik', no: 1, d: 'Antibiyotik içermez.' }, { l: 'Fetal doku', no: 1, d: 'Hiçbir doku içermez.' }, { l: 'Yumurta, lateks', no: 1, d: 'Gıda proteinleri ve lateks içermez.' }] } },
+      { h: 'mRNA nasıl üretilir?', t: 'mRNA hücrenin içinde değil, tüpte enzimlerle üretilir. Önce bir DNA şablonu hazırlanır (genellikle bakterilerde çoğaltılan halka DNA). Enzimler bu şablondan mRNA kopyalar. Şablon sonra parçalanıp ayrılır, mRNA saflaştırılır, lipitlerle paketlenir ve steril şişelere doldurulur.', a: 'Fotokopi makinesi gibi: Kalıp (DNA) kopyalanır ama kopyaya karışmaz; iş bitince kalıp ortadan kaldırılır.', vis: { type: 'flow', steps: [{ l: 'DNA şablonu' }, { l: 'Enzimle kopyalama' }, { l: 'Saflaştırma' }, { l: 'Lipitle paketleme' }, { l: 'Steril dolum' }, { l: 'Kalite kontrol' }] } }
+    ],
+    check: { q: 'mRNA’yı koruyan ve hücreye taşıyan bileşen hangisi?', ok: 'Doğru. Lipit baloncuklar olmasa mRNA vücutta hücreye ulaşmadan parçalanırdı.', opts: [{ t: 'Lipitler (yağ baloncukları)', ok: true }, { t: 'Şeker', fb: 'Şeker dondurmada yapıyı korur ama taşıyıcı değildir.' }, { t: 'Tuz', fb: 'Tuz asitliği dengeler; taşıyıcı değildir.' }] } },
+  cold: { title: 'Neden bu kadar soğuk?', c: '#6ad1ff',
+    slides: [
+      { h: 'mRNA kırılgan bir moleküldür', t: 'mRNA ısıyla ve ortamdaki enzimlerle kolayca parçalanır. Vücutta görevini yapıp çabucak yok olması bu sayede olur; ama şişede bu kırılganlık korunması gereken bir şeydir.', a: 'Dondurma gibi: Dondurucuda aylarca durur, masada dakikalar içinde erir. Eriyen dondurmayı geri dondursan da eski hâline dönmez.' },
+      { h: 'Zincir kopmamalı', t: 'Fabrikadan rafa kadar her halkada sıcaklık kaydedilir. Bir sapma olursa dozlar karantinaya alınır ve üretici verisine göre karar verilir.', vis: { type: 'flow', steps: [{ l: 'Fabrika' }, { l: 'Depo' }, { l: 'Kamyon' }, { l: 'Eczane' }, { l: 'Raf' }] } }
+    ],
+    check: { q: 'mRNA’nın kırılgan olması hangi soruya iyi bir yanıttır?', ok: 'Evet. Aynı kırılganlık hem soğuk zinciri gerektirir hem de mRNA’nın vücutta kalıcı olmadığını gösterir.', opts: [{ t: '“Aşı DNA’mı değiştirir mi?” Hayır: mRNA kısa sürede parçalanır, kalıcı değildir.', ok: true }, { t: '“Aşıda çip var mı?” Soğuk, çipi korur.', fb: 'Aşıda çip yoktur; soğuk mRNA’yı korumak içindir.' }, { t: '“Aşı canlı virüs içerir mi?” Soğuk, virüsü canlı tutar.', fb: 'mRNA aşısında virüs yoktur; korunan şey mRNA’dır.' }] } },
+  sidefx: { title: 'Yan etki yalnızca aşılarda mı var?', c: '#ff8fc6', eb: 'Risk ve yarar',
+    src: [{ l: 'EMA — Ürün bilgisi yan etki sıklık sınıfları', u: 'https://ema.europa.eu/en/documents/other/appendix-3-guideline-clinical-evaluation-anticancer-medicinal-products-summary-product-characteristics-anticancer-medicinal-product-mock-48_en.pdf' }, { l: 'CDC MMWR 2021;70(27)', u: 'https://www.cdc.gov/mmwr/volumes/70/wr/mm7027e2.htm' }],
+    slides: [
+      { h: 'Her ilacın kutusunda bir kâğıt var', t: 'Ağrı kesiciden antibiyotiğe kadar her ilacın kullanma talimatında yan etkiler listelenir. Etkili olup hiç yan etkisi olmayan ilaç yoktur. Önemli olan, ne sıklıkta görüldüğü, ne kadar ciddi olduğu ve yararıyla karşılaştırıldığında nerede durduğudur.', a: 'Araba kullanmak da risksiz değildir. Emniyet kemeri ve kurallar riski küçültür; karar yarar ile riski birlikte tartarak verilir.' },
+      { h: 'Talimattaki sıklık kelimeleri', t: 'Avrupa’daki ilaç talimatları yan etkileri hep aynı ölçekle yazar. Çubuklar temsilidir (logaritmik).', vis: { type: 'ladder', rows: [{ l: 'Çok yaygın', v: '10 kişiden 1 veya daha fazlası', w: 45, c: '#ff8fc6' }, { l: 'Yaygın', v: '100’de 1 ile 10’da 1 arası', w: 34, c: '#ffb454' }, { l: 'Yaygın olmayan', v: '1.000’de 1 ile 100’de 1 arası', w: 23, c: '#ffd166' }, { l: 'Seyrek', v: '10.000’de 1 ile 1.000’de 1 arası', w: 12, c: '#7fb8ff' }, { l: 'Çok seyrek', v: '10.000’de 1’den az', w: 4, c: '#5fd3a6' }] } },
+      { h: '“Çok yaygın” neye benzer?', t: 'Aşıdan sonra kol ağrısı bu gruptadır: Birçok kişide görülür, birkaç günde geçer.', vis: { type: 'dots', n: 10, total: 100, cap: '100 kişiden en az 10’u' } },
+      { h: '“Seyrek” neye benzer?', t: 'Seyrek bir yan etki 1.000 kişiden yaklaşık 1’inde görülür. Kaynaklı bir örnek: ABD’de 12–29 yaş erkeklerde ikinci dozdan sonraki miyokardit bildirim oranı milyon dozda yaklaşık 40, yani kabaca 25.000’de 1’di. Bu, ölçekteki “çok seyrek” sınıfına denk gelir.', vis: { type: 'dots', n: 1, total: 1000, cap: '1.000 kişide 1 (parlayan nokta)' } }
+    ],
+    check: { q: 'Bir ilacın talimatında “seyrek” yazıyorsa bu ne demektir?', ok: 'Doğru. Bu ölçek tüm ilaçlarda aynıdır; aşıların yan etkileri de aynı dille yazılır.', opts: [{ t: '10.000 kişiden 1 ile 1.000 kişiden 1 arasında görülür.', ok: true }, { t: 'Neredeyse herkeste görülür.', fb: 'Herkeste görülen yan etkiler “çok yaygın” sınıfındadır (10’da 1 ve fazlası).' }, { t: 'Hiç görülmez.', fb: 'Seyrek, “hiç” demek değildir; nadiren görülür demektir.' }] } },
+  shed: { title: 'Aşı olan biri bana bulaştırır mı?', c: '#b2e05a', eb: 'Bulaşma riski', src: [SRC_CDC],
+    slides: [
+      { h: 'Aşıdan “saçılma” olmaz', t: 'Aşı bileşenlerinin vücuttan çevreye yayılmasına “saçılma” denir. Bu yalnızca zayıflatılmış canlı virüs içeren aşılarda mümkündür. COVID-19 mRNA ve viral vektör aşıları canlı virüs içermez; aşılı biri aşıyı başkasına geçiremez.', a: 'Bir yemeğin tarifini okumak seni hasta etmez; tarifi okuyan arkadaşın da sana bir şey bulaştırmaz.' },
+      { h: 'Ama virüs bulaşabilir', t: 'Aşı ağır hastalığa karşı korur ama enfeksiyonu her zaman engellemez. Aşılı biri virüse yakalanırsa virüsü bulaştırabilir. Bulaşmanın nedeni aşı değil, virüstür.', vis: { type: 'flow', steps: [{ l: 'Aşı: canlı virüs yok', c: '#5fd3a6' }, { l: 'Saçılma yok', c: '#5fd3a6' }, { l: 'Virüs: bulaşabilir', c: '#ff8b98' }, { l: 'Hasta hissedersen temas azalt', c: '#ffd166' }] } }
+    ],
+    check: { q: 'Aşılı komşun hapşırıyor. Ondan “aşı bulaşır” mı?', ok: 'Doğru. İki ayrı soruyu ayırmak kafa karışıklığını giderir: aşı saçılmaz, virüs bulaşabilir.', opts: [{ t: 'Hayır. Aşı saçılmaz; ama hastaysa virüs bulaşabilir. Bu aşıdan değil, virüstendir.', ok: true }, { t: 'Evet, aşılılar çevreye spike proteini yayar.', fb: 'Saçılma yalnızca canlı zayıflatılmış virüs aşılarında olur; COVID-19 aşılarında canlı virüs yoktur.' }, { t: 'Aşılı biri asla virüs taşımaz.', fb: 'Aşı enfeksiyonu her zaman engellemez; korumanın asıl gücü ağır hastalığa karşıdır.' }] } },
+  cause: { title: '“Sonra” ile “yüzünden” aynı şey mi?', c: '#b2e05a',
+    slides: [
+      { h: 'Her gün zaten bir şeyler olur', t: 'Aşı olsun olmasın, her gün bazı insanlar kalp krizi geçirir, kolunu kırar, grip olur. Milyonlarca kişi aşılanınca bu olayların bir kısmı tesadüfen aşıdan sonraki günlere denk gelir.', a: MYTHS.reports.ana },
+      { h: 'Sinyal: beklenenden fazlası', t: 'Uzmanlar şunu hesaplar: “Aşı olmasaydı bu sürede bu grupta kaç vaka beklerdik?” Gözlenen sayı beklenenin belirgin üstündeyse bu bir sinyaldir ve aktif takiple ayrıca incelenir.', vis: { type: 'flow', steps: [{ l: 'Raporları topla' }, { l: 'Beklenen sayıyı hesapla' }, { l: 'Karşılaştır' }, { l: 'Fazlaysa aktif takip' }] } }
+    ],
+    check: { q: 'Aşıdan bir hafta sonra kolunu kıran biri rapor verdi. Bu rapor neyi kanıtlar?', ok: 'Doğru. Rapor bir ipucudur; kanıt, binlerce raporun beklenen sayıyla karşılaştırılmasından gelir.', opts: [{ t: 'Tek başına neden-sonuç kanıtlamaz; ama rapor yine de değerlidir.', ok: true }, { t: 'Aşının kemik kırdığını kanıtlar.', fb: 'Zamanca sonra olması neden olduğu anlamına gelmez.' }, { t: 'Bu rapor hiç gönderilmemeliydi.', fb: 'Neden belirsiz olsa bile bildirim istenir; sinyal aramak için her rapor değerlidir.' }] } }
+};
+const Explain = {
+  run(id) {
+    return new Promise(res => {
+      const E = EXPLAIN[id]; if (!E) { res(); return; }
+      let i = 0;
+      const vis = (v, col) => {
+        if (!v) return '';
+        if (v.type === 'flow') return `<div class="flow${v.hi === undefined ? ' all' : ''}">${v.steps.map((s, k) => `<div class="fn${k === v.hi ? ' hi' : ''}${v.hi !== undefined && k < v.hi ? ' past' : ''}" style="--c:${s.c || col}"><b>${k + 1}</b><span>${esc(s.l)}</span></div>`).join('<i class="fa" aria-hidden="true">→</i>')}</div>`;
+        if (v.type === 'chips') return `<div class="chips">${v.items.map(s => `<button type="button" class="chip${s.no ? ' no' : ''}" style="--c:${s.no ? '#ff8b98' : (s.c || col)}" data-d="${esc(s.d || '')}"><b>${esc(s.l)}</b></button>`).join('')}</div><div class="chipd" id="xChip">${esc(v.hint || 'Bir öğeye dokun.')}</div>`;
+        if (v.type === 'dots') { let d = ''; for (let k = 0; k < v.total; k++) d += `<i${k === (v.total > 200 ? 517 : -1) || (v.total <= 200 && k % Math.round(v.total / v.n) === 3) ? ' class="on"' : ''}></i>`; return `<div class="dots2${v.total > 200 ? ' sm' : ''}" role="img" aria-label="${esc(v.cap)}">${d}</div><div class="dcap">${esc(v.cap)}</div>`; }
+        if (v.type === 'ladder') return `<div class="ladder">${v.rows.map(r => `<div><b style="--w:${r.w}%;--c:${r.c}"></b><span><strong>${esc(r.l)}</strong> · ${esc(r.v)}</span></div>`).join('')}</div>`;
+        return '';
+      };
+      const head = (eb, h, col) => `<div class="xhead" style="--c:${col}"><div class="eyebrow">${esc(eb)}</div><h2>${esc(h)}</h2></div>`;
+      const show = () => {
+        const n = E.slides.length; if (i >= n) { check(); return; }
+        const S = E.slides[i], col = S.c || E.c;
+        const c = Modal.open(`${head(E.eb || 'Nasıl çalışır?', E.title, col)}<div class="steps">${E.slides.map((_, k) => `<i class="${k <= i ? 'on' : ''}"></i>`).join('')}<i></i></div>
+          ${S.vis ? `<div class="xv" style="--c:${col}">${vis(S.vis, col)}</div>` : ''}<h3 class="xh">${esc(S.h)}</h3><p>${esc(S.t)}</p>
+          ${S.a ? `<div class="ana" style="--c:${col}"><b>Bir benzetmeyle</b>${esc(S.a)}</div>` : ''}${S.note ? `<p class="xnote">${esc(S.note)}</p>` : ''}
+          <div class="btnrow">${i > 0 ? '<button class="btn" type="button" id="xBack">← Geri</button>' : ''}<button class="btn primary" type="button" id="xNext">${i < n - 1 ? 'İleri →' : 'Kendini sına →'}</button></div>`);
+        c.querySelectorAll('.chip').forEach(b => b.onclick = () => { c.querySelectorAll('.chip').forEach(x => x.classList.remove('sel')); b.classList.add('sel'); c.querySelector('#xChip').textContent = b.dataset.d; });
+        const bk = c.querySelector('#xBack'); if (bk) bk.onclick = () => { i--; show(); };
+        c.querySelector('#xNext').onclick = () => { i++; show(); };
+      };
+      const check = () => {
+        const Q = E.check;
+        const c = Modal.open(`${head('Kendini sına', Q.q, E.c)}<div class="choices" id="xq"></div><div class="fb" id="xfb"></div><div class="btnrow"><button class="btn primary" type="button" id="xDone" style="display:none">Şimdi anladım ✓</button></div>${E.src ? `<p class="xnote">Kaynak: ${E.src.map(s => esc(s.l)).join(' · ')}</p>` : ''}`);
+        const box = c.querySelector('#xq'), fb = c.querySelector('#xfb');
+        shuffle(Q.opts).forEach(o => { const b = document.createElement('button'); b.type = 'button'; b.className = 'choice'; b.textContent = o.t; box.appendChild(b);
+          b.onclick = () => { if (o.ok) { b.classList.add('right'); box.querySelectorAll('button').forEach(x => x.disabled = true); fb.className = 'fb show good'; fb.textContent = '✓ ' + Q.ok; c.querySelector('#xDone').style.display = ''; } else { b.classList.add('wrong'); b.disabled = true; fb.className = 'fb show bad'; fb.textContent = o.fb; } }; });
+        c.querySelector('#xDone').onclick = () => { Modal.close(); FX.burst(W / 2, H / 2, true); res(); };
+      };
+      show();
+    });
+  }
+};
+
 /* ===================== STORY: diyalog ===================== */
 const Story = {
   dialog(lines) {
@@ -815,7 +966,7 @@ function mythFullHTML(id) {
     <div class="sec"><div class="lab">Mit</div><div class="m"><s>${esc(m.myth)}</s></div></div>
     <div class="sec"><div class="lab">İnsanlar neden buna inanıyor?</div>${esc(m.why)}</div>
     <div class="sec"><div class="lab">Kanıt</div>${esc(m.opts.find(o => o.ok).t)}${m.num ? `<p style="font-size:13.5px;color:#cfd5de">${esc(m.num)}</p>` : ''}</div>
-    <div class="sec"><div class="lab">Doğru açıklama</div>${esc(m.truth)}${m.dateSensitive ? '<div class="datewarn">⚠ Tarihe duyarlı konu: Güncel öneri için aile hekiminize veya ülkenizin sağlık otoritesine danışın.</div>' : ''}</div>
+    <div class="sec"><div class="lab">Doğru açıklama</div>${esc(m.truth)}${m.ana ? `<div class="ana" style="--c:var(--accent)"><b>Bir benzetmeyle</b>${esc(m.ana)}</div>` : ''}${m.dateSensitive ? '<div class="datewarn">⚠ Tarihe duyarlı konu: Güncel öneri için aile hekiminize veya ülkenizin sağlık otoritesine danışın.</div>' : ''}</div>
     <div class="sec"><div class="lab">Kaynak etiketi</div>${sourcesHTML(m)}</div></div>`;
 }
 const Myth = {
@@ -918,7 +1069,7 @@ const Game = {
   setState(s) { this.state = s; document.body.dataset.state = s; },
   after(sec, fn) { this.timers.push({ t: sec, fn, tok: this.tok }); },
   intro() {
-    this.setState('INTRO'); this.sub = ''; this.idx = -1; this.ch = null; UI.chapter(-1); UI.journey(-1);
+    this.setState('INTRO'); this.sub = ''; document.documentElement.style.setProperty('--accent', '#7fe3d4'); this.idx = -1; this.ch = null; UI.chapter(-1); UI.journey(-1);
     UI.hint('“Yolculuğa başla”ya dokun.', 'Bir aşının fikirden rafa uzanan yolunu adım adım göreceksin.');
     const c = Modal.open(`<div class="intro">
       <svg class="biglogo" viewBox="0 0 64 64" aria-hidden="true"><circle class="ring" cx="32" cy="32" r="21" fill="none" stroke="currentColor" stroke-width="3.6" pathLength="140" transform="rotate(-90 32 32)"/><path class="needle" d="M14 50 L49 15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" pathLength="60"/><path class="needle" d="M10.5 46.5 L17.5 53.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" pathLength="60"/><path class="drop" d="M53 8 q3 4 0 6 q-3-2 0-6z" fill="currentColor"/></svg>
@@ -942,7 +1093,7 @@ const Game = {
   },
   async startChapter(i, retry) {
     this.tok++; const tok = this.tok; this.timers = []; Stage.clear(); FX.list = []; setCursor(null);
-    this.idx = i; this.ch = CHAPTERS[i];
+    this.idx = i; this.ch = CHAPTERS[i]; document.documentElement.style.setProperty('--accent', CH_COLORS[i]);
     if (retry) State.restore(); else State.save();
     if (i >= 7) State.trustOn = true;
     Metrics.renderAll(); UI.chapter(i); UI.journey(i);
@@ -952,6 +1103,7 @@ const Game = {
     UI.hint('Sahneyi izle; ilerlemek için diyaloğa dokun.', 'Her durak kısa bir sahneyle başlar.');
     if (!retry) await Story.dialog(this.ch.dialog);
     if (tok !== this.tok) return;
+    if (!retry && this.ch.explainStart) { this.sub = 'EXPLAIN'; UI.hint('Kartı oku ve kendini sına.', 'Önce mekanizmayı anlamak, oyundaki her adımı anlamlı kılar.'); await Explain.run(this.ch.explainStart); if (tok !== this.tok) return; }
     this.sub = 'PLAY'; this.ch.start();
   },
   async complete() {
@@ -960,6 +1112,7 @@ const Game = {
     UI.hint('Mit Avı kartını çöz.', 'Her durak, bir yanlış inanışı yargılamadan, kanıt ve kaynakla ele alır.');
     await new Promise(r => setTimeout(r, 700));
     if (tok !== this.tok) return;
+    if (this.ch.explainEnd) { await Explain.run(this.ch.explainEnd); if (tok !== this.tok) return; }
     if (this.ch.outro) await Story.dialog(this.ch.outro);
     for (const m of [].concat(this.ch.myth || [])) { if (tok !== this.tok) return; await Myth.run(m); }
     if (tok !== this.tok) return;
@@ -1209,7 +1362,7 @@ const LAB_HINT = {
   fwait: ['Ucu sıvıda tut ve 1 saniye bekle.', 'Sıvının uca tamamen dolması için kısa bir bekleme gerekir.'],
   fmove: ['Ucu sıvıdan çıkar ve HEDEF tüpe taşı. Dolu pipeti yavaş taşı!', 'Hızlı ve sarsıntılı hareket damlamaya ve aerosole yol açar: hem hacim kaybı hem kontaminasyon riski.'],
   fdisp: ['Uç hedef tüpün içindeyken pistonu 1. kademeye bas, kısa dur, sonra 2. kademeye bas (üfleme).', '1. kademe sıvıyı boşaltır; kısa duraklama uç duvarındaki sıvının toplanmasını sağlar; 2. kademe son damlayı üfler.'],
-  fout: ['Ucu tüpten çıkar, sonra pistonu yukarı bırak.', 'Piston sıvının içindeyken bırakılırsa sıvıyı geri çeker.'],
+  fout: ['Ucu tüpten çıkar; piston dışarıda kendiliğinden bırakılır.', 'Piston sıvının içindeyken bırakılırsa sıvıyı geri çeker; bu yüzden önce ucu çıkarırız.'],
   eject1: ['Pipeti atık kutusunun üstüne indir: kullanılmış ucu at.', 'Kullanılmış uç bir sonraki reaktifi kirletir (çapraz kontaminasyon).'],
   tip2: ['Uç kutusuna dön ve YENİ steril uç tak.', 'Yeni reaktif = yeni steril uç.'],
   rp2: ['Pipeti SÜKROZLU STOK tüpünün üstüne getir. Pistonu 2. kademeye kadar bas.', 'Ters teknik (viskoz / köpüren sıvılar): Fazladan sıvı çekilir; böylece yapışkan sıvıda bile doz doğru olur ve köpük oluşmaz.'],
@@ -1320,12 +1473,12 @@ CHAPTERS.push({
       }
     }
   },
-  spin() { if (this.spinning || this.step !== 'spin') return; this.spinning = true; Stage.clear(); UI.toast('Santrifüj çalışıyor…', 'info'); Game.after(2.4, () => { this.spinning = false; this.spun = true; UI.toast('Hücreler dipte pellet oluşturdu.', 'good'); this.R.x = 480; this.R.tx = 480; this.R.tr.reset(480, 0); this.go('resusp'); }); },
+  spin() { if (this.spinning || this.step !== 'spin') return; this.spinning = true; Stage.clear(); UI.toast('Santrifüj çalışıyor…', 'info'); Game.after(1.4, () => { this.spinning = false; this.spun = true; UI.toast('Hücreler dipte pellet oluşturdu.', 'good'); this.R.x = 480; this.R.tx = 480; this.R.tr.reset(480, 0); this.go('resusp'); }); },
   mix() { if (this.mixing) return; this.mixing = .01; Stage.clear(); const good = State.mistakes < 4; Metrics.add('stability', good ? 6 : 2, { x: 560, y: 330 }); UI.toast('Formülasyon hücrelere eklendi. Hücreler spike proteinini üretiyor (in vitro test).', 'good'); Game.after(1.6, () => Game.complete()); },
   eject() {
     const P = this.P; P.hasTip = false; const left = P.vol; P.vol = 0; P.volT = 0; P.bub = 0; P.tipUsed = null;
     FX.emit(P.x, P.y - 20, { n: 1, type: 'drop', col: '#d9e1e8', size: 7, min: 10, max: 30, angle: Math.PI / 2, g: 600, life: .6 });
-    if (this.step === 'eject1') { UI.toast('Kullanılmış uç atıldı.', 'good'); if (this.redo === 'f') { this.redo = null; this.go('tip1'); } else this.go('tip2'); }
+    if (this.step === 'eject1') { UI.toast('Kullanılmış uç atıldı.', 'good'); if (this.redo === 'f') { this.redo = null; this.go('tip1'); } else { this.step = 'x'; const tok = Game.tok; Explain.run('reverse').then(() => { if (tok === Game.tok) this.go('tip2'); }); } }
     else if (this.step === 'eject2') { if (this.redo === 'r') { this.redo = null; UI.toast('Uç atıldı. Ters tekniği yeniden dene.', 'info'); this.go('tip2'); } else { UI.toast('Uç, kalan fazla sıvıyla birlikte atıldı ✓', 'good'); this.go('mix'); } }
     else {
       UI.toast('Uç atıldı.', 'info');
@@ -1339,7 +1492,7 @@ CHAPTERS.push({
   // ---- güncelleme ----
   update(dt) {
     const P = this.P, s = this.step;
-    if (this.warming && this.warm < 1) { this.warm = Math.min(1, this.warm + dt / 2.2); if (this.warm >= 1) { this.warming = false; UI.toast('Reaktifler oda sıcaklığında ✓', 'good'); this.go('centri'); } }
+    if (this.warming && this.warm < 1) { this.warm = Math.min(1, this.warm + dt / 1.1); if (this.warm >= 1) { this.warming = false; UI.toast('Reaktifler oda sıcaklığında ✓', 'good'); this.go('centri'); } }
     if (this.wob > 0) this.wob = Math.max(0, this.wob - dt * 1.2);
     if (this.spinning) this.spinA += dt * 30;
     if (this.mixing) this.mixing = Math.min(1, this.mixing + dt / 1.4);
@@ -1408,7 +1561,7 @@ CHAPTERS.push({
         if (P.p < .8) P.flags.s2 = 0;
         if (wantStop2 && Math.abs(P.p - STOP1) < .04 && above(t)) { P.timer += dt; if (P.timer > 1.2 && !P.flags.s1) { P.flags.s1 = 1; UI.toast('Ters teknik: 1. kademede durma, 2. kademeye kadar bas.', 'info'); } } else if (wantStop2) P.timer = 0;
         const ok = wantStop2 ? P.p > .93 : (P.p > .55 && P.p < .7);
-        if (ok && above(t)) { P.t1 += 0; P.timer += dt; if (P.timer > .25 || (wantStop2 && P.p > .93)) { UI.toast(wantStop2 ? '2. kademe ✓' : '1. kademe ✓', 'good'); this.go(wantStop2 ? 'rdip' : 'fdip'); } }
+        if (ok && above(t)) { P.timer += dt; if (P.timer > .1 || (wantStop2 && P.p > .93)) { UI.toast(wantStop2 ? '2. kademe ✓' : '1. kademe ✓', 'good'); this.go(wantStop2 ? 'rdip' : 'fdip'); } }
         else if (!wantStop2) P.timer = 0;
         if (ok && !above(t) && !P.flags.where) { P.flags.where = 1; UI.toastOnce('where', 'Pipeti ' + (wantStop2 ? 'SÜKROZLU STOK' : 'TAMPON') + ' tüpünün üstüne getir.', 'info'); }
         break;
@@ -1417,7 +1570,7 @@ CHAPTERS.push({
         const t = s === 'fdip' ? A : B, need = s === 'fdip' ? (P.p > .5 && P.p < .75) : P.p > .9;
         if (!need) { UI.toastOnce('lost', 'Piston kademesi değişti; yeniden bas.', 'warn'); this.go(s === 'fdip' ? 'fp1' : 'rp2'); break; }
         if (inLiq && tube.id !== t.id && tube.id !== 'C') UI.toastOnce('wrongtube', 'Bu tüp değil: ' + t.name + '.', 'warn');
-        if (inLiq && tube.id === t.id) { deepCheck(); if (depth >= 1.5 && depth <= 4.2) { P.timer += dt; if (P.timer > .3) { UI.toast('Derinlik ' + depth.toFixed(1) + ' mm ✓', 'good'); this.go(s === 'fdip' ? 'frel' : 'rrel'); } } else P.timer = 0; }
+        if (inLiq && tube.id === t.id) { deepCheck(); if (depth >= 1.5 && depth <= 4.2) { P.timer += dt; if (P.timer > .15) { UI.toast('Derinlik ' + depth.toFixed(1) + ' mm ✓', 'good'); this.go(s === 'fdip' ? 'frel' : 'rrel'); } } else P.timer = 0; }
         break;
       }
       case 'frel': case 'rrel': {
@@ -1470,8 +1623,7 @@ CHAPTERS.push({
         const insideLiq = inLiq && tube.id === 'T';
         if (insideLiq && P.p < .3 && !P.flags.back) { P.flags.back = 1; Metrics.add('stability', -1); UI.toastOnce('back', 'Piston sıvının içinde bırakıldı: sıvı geri çekildi.', 'warn'); }
         const out = !(tube && tube.id === 'T');
-        if (s === 'fout' && out && P.p < .15) this.go('eject1');
-        if (s === 'fout' && out && P.p >= .15) UI.toastOnce('rel', 'Şimdi pistonu yukarı bırak.', 'info', 5);
+        if (s === 'fout' && out) { if (P.p >= .15) { P.p = 0; UI.toast('Uç dışarıda: piston bırakıldı ✓ İçeride bırakılsaydı sıvıyı geri çekerdi.', 'good'); } this.go('eject1'); }
         if (s === 'rout' && out) this.go('eject2');
         break;
       }
@@ -1491,9 +1643,9 @@ CHAPTERS.push({
       if (Math.random() < dt * 14) FX.emit(R.x + rand(-20, 20), 250, { n: 2, type: 'bubble', col: '#fff', g: -50, min: 10, max: 40, size: rand(2, 4), life: 1.2 });
       if (UI.toastOnce('harsh', 'Çok sert! Hücreler parçalanıyor.', 'bad', 3)) { State.mistakes++; UI.explain('Liziz ve denatürasyon', 'Sert çalkalama hücre zarlarını yırtar (liziz) ve proteinlerin katlanmış yapısını bozar (denatürasyon). Daha yumuşak, ritmik ve yatay salla.'); }
     } else if (R.held && sp > 70) {
-      R.prog = Math.min(1, R.prog + dt * clamp((sp - 70) / 520, 0, 1) * .3);
+      R.prog = Math.min(1, R.prog + dt * clamp((sp - 70) / 520, 0, 1) * .5);
     }
-    if (R.prog >= 1 && this.step === 'resusp') { R.held = false; setCursor(null); UI.toast('Hücreler eşit dağıldı ✓', 'good'); Metrics.add('viability', 0); FX.burst(R.x, 330, true); this.go('tip1'); }
+    if (R.prog >= 1 && this.step === 'resusp') { R.held = false; setCursor(null); UI.toast('Hücreler eşit dağıldı ✓', 'good'); FX.burst(R.x, 330, true); this.step = 'x'; const tok = Game.tok; Explain.run('pipette').then(() => { if (tok === Game.tok) this.go('tip1'); }); }
   },
   focus() {
     const s = this.step, P = this.P, pl = { x: PL.x, y: PL.top + P.p * PL.len, r: 90 }, tip = { x: P.x, y: P.y - 60, r: 110 };
@@ -1521,7 +1673,7 @@ CHAPTERS.push({
   draw(g) {
     const px = Scenes.par.x, py = Scenes.par.y;
     // arka duvar + raflar (parallax)
-    const bg = g.createLinearGradient(0, 0, 0, 260); bg.addColorStop(0, '#dfe7ef'); bg.addColorStop(1, '#cfd9e4'); g.fillStyle = bg; g.fillRect(0, 0, W, H);
+    const bg = g.createLinearGradient(0, 0, 0, 260); bg.addColorStop(0, '#ffe7c7'); bg.addColorStop(1, '#ffd2a3'); g.fillStyle = bg; g.fillRect(0, 0, W, H);
     g.save(); g.translate(-px * 12, -py * 5);
     for (let i = 0; i < 3; i++) { g.fillStyle = '#b8c5d3'; g.fillRect(60 + i * 300, 70, 240, 8); for (let j = 0; j < 7; j++) { const c = ['#9fd8f0', '#f2d39b', '#c9b0ff', '#ffd37f', '#9ff0c0'][(i + j) % 5]; g.fillStyle = c; rr(g, 70 + i * 300 + j * 32, 34, 22, 36, 5); g.fill(); g.fillStyle = 'rgba(255,255,255,.4)'; g.fillRect(74 + i * 300 + j * 32, 40, 4, 24); } }
     g.fillStyle = '#c4d0dc'; g.fillRect(40, 150, 880, 6);
@@ -1531,8 +1683,8 @@ CHAPTERS.push({
     g.fillStyle = '#d5dee8'; rr(g, 620, 120, 300, 120, 10); g.fill(); g.fillStyle = '#e8eef4'; rr(g, 635, 140, 270, 90, 6); g.fill();
     g.restore();
     // tezgâh (2.5D kalın plaka)
-    poly(g, [[30, 250], [930, 250], [960, 565], [0, 565]], '#eef2f6');
-    poly(g, [[0, 565], [960, 565], [960, 600], [0, 600]], '#c3ccd7');
+    poly(g, [[30, 250], [930, 250], [960, 565], [0, 565]], '#f3fbff');
+    poly(g, [[0, 565], [960, 565], [960, 600], [0, 600]], '#3aa0c8');
     g.strokeStyle = 'rgba(120,140,160,.12)'; g.lineWidth = 1; for (let i = 1; i < 8; i++) { const y = 250 + i * 40; const k = (y - 250) / 315; g.beginPath(); g.moveTo(30 - 30 * k, y); g.lineTo(930 + 30 * k, y); g.stroke(); }
     // eldiven kutusu
     Iso.set(GLOVE.x, GLOVE.y - 30, 40); Iso.box(g, -.9, -.9, 0, 1.8, 1.2, 1.6, '#8f7cf7', { top: this.gloves ? '#b3a6fa' : '#c2b8fb' });
@@ -1908,10 +2060,10 @@ CHAPTERS.push({
     // grup alanları
     for (const [gx, lab, col] of [[1, 'Grup K-17', '#c9b0ff'], [5.6, 'Grup M-42', '#9cc8ff']]) {
       const P = (a, b) => Iso.p(a, b); poly(g, [P(gx, 1), P(gx + 3.3, 1), P(gx + 3.3, 3.4), P(gx, 3.4)], rgba(col, .35), rgba(col, .9));
-      const [lx, ly] = Iso.p(gx + 1.6, .6, 0); panel(g, lx - 46, ly - 30, 92, 24, { fill: '#fff', r: 8 }); txt(g, this.unbl ? (gx < 3 ? 'K-17 = Plasebo' : 'M-42 = Aşı') : lab, lx, ly - 18, { size: 11, weight: 800 });
     }
     const vs = this.vols.slice().sort((a, b) => (a.x + a.y) - (b.x + b.y));
     for (const v of vs) { const [sx, sy] = Iso.p(v.x, v.y); drawPerson(g, sx, sy, { s: .72, shirt: v.shirt, coat: null, hair: v.hair, long: v.long }); }
+    for (const [gx, lab] of [[1, 'Grup K-17'], [5.6, 'Grup M-42']]) { const [lx, ly] = Iso.p(gx + 1.6, .6, 0); panel(g, lx - 56, ly - 96, 112, 26, { fill: '#fff', r: 8 }); txt(g, this.unbl ? (gx < 3 ? 'K-17 = Plasebo' : 'M-42 = Aşı') : lab, lx, ly - 83, { size: 12, weight: 800 }); }
     if (this.step === 'curve' || this.step === 'unblind') this.drawCurve(g);
   },
   drawCurve(g) {
@@ -2338,14 +2490,14 @@ CHAPTERS.push({
     'Teknik bilgi seli doğru olsa bile anlaşılmayı zorlaştırır.',
     'Karar kişinin kendisine aittir; amaç güvenilir bilgiye ulaşmasına yardım etmektir.'
   ],
-  init() { this.step = ''; this.k = 0; },
+  init() { this.step = ''; this.k = 0; this.shed = false; },
   start() { this.next(); },
   next() {
     const tok = Game.tok;
     if (this.k >= TALKS.length) { UI.toast('Üç sohbet tamamlandı. Halk güveni: ' + Math.round(State.m.trust), 'good'); Game.after(.8, () => Game.complete()); return; }
     const T = TALKS[this.k]; this.step = T.key;
     UI.hint(T.place + ': ' + CHARS[T.npc].name + ' ile konuş.', 'Dinle → empati → tek basit gerçek → kaynak. Seçimlerin Halk Güveni’ni değiştirir.');
-    Game.after(.9, () => { Talk.run(T).then(() => { if (tok !== Game.tok || Game.sub !== 'PLAY') return; this.k++; this.next(); }); });
+    Game.after(.9, async () => { if (this.k === 1 && !this.shed) { this.shed = true; await Explain.run('shed'); if (tok !== Game.tok) return; } Talk.run(T).then(() => { if (tok !== Game.tok || Game.sub !== 'PLAY') return; this.k++; this.next(); }); });
   },
   draw(g) {
     const s = this.step || 'pharmacy';
@@ -2481,6 +2633,8 @@ CHAPTERS.push({
     g.save(); g.globalAlpha = k; g.translate(500, 158); g.rotate((1 - k) * .5); g.fillStyle = '#ffe48a'; rr(g, -94, -14, 188, 28, 6); g.fill(); txt(g, '⚠ Uyarı: nadir miyokardit riski', 0, 0, { size: 11, weight: 900 }); g.restore();
   }
 });
+
+CHAPTERS[0].explainEnd = 'mrna'; CHAPTERS[1].explainStart = 'lab'; CHAPTERS[2].explainStart = 'titer'; CHAPTERS[5].explainStart = 'make'; CHAPTERS[6].explainStart = 'cold'; CHAPTERS[7].explainStart = 'sidefx'; CHAPTERS[8].explainStart = 'cause';
 
 /* ========================================================================
    FİNAL — halk güveni, aşı kapsamı, güvenilir kaynaklar
